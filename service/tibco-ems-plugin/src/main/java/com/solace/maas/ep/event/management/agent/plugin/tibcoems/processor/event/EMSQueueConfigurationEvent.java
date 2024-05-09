@@ -15,7 +15,6 @@ public class EMSQueueConfigurationEvent implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 255842056103154192L;
-// TODO: add additional queue info
     private String name;
-    private QueueInfo configuration;
+    private Map<String, Object> configuration;
 }

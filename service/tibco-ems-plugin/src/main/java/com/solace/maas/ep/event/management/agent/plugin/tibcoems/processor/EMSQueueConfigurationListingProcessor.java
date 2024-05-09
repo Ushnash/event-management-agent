@@ -1,5 +1,8 @@
 package com.solace.maas.ep.event.management.agent.plugin.tibcoems.processor;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solace.maas.ep.event.management.agent.plugin.constants.RouteConstants;
 import com.solace.maas.ep.event.management.agent.plugin.processor.base.ResultProcessorImpl;
 import com.solace.maas.ep.event.management.agent.plugin.service.MessagingServiceDelegateService;
@@ -11,38 +14,39 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Component
-public class EMSQueueConfigurationListingProcessor extends ResultProcessorImpl<List<EMSQueueConfigurationEvent>, Void> {
+public class EMSQueueConfigurationListingProcessor extends ResultProcessorImpl<List<Map<String, Object>>, Void> {
     private final MessagingServiceDelegateService messagingServiceDelegateService;
+    private final ObjectMapper objectMapper;
 
     @Autowired
     public EMSQueueConfigurationListingProcessor(MessagingServiceDelegateService messagingServiceDelegateService) {
         super();
         this.messagingServiceDelegateService = messagingServiceDelegateService;
+        objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override
     @SuppressWarnings("PMD")
-    public List<EMSQueueConfigurationEvent> handleEvent(Map<String, Object> properties, Void body) throws Exception {
+    public List<Map<String, Object>> handleEvent(Map<String, Object> properties, Void body) throws Exception {
         String messagingServiceId = (String) properties.get(RouteConstants.MESSAGING_SERVICE_ID);
 
         TibjmsAdmin adminClient = messagingServiceDelegateService.getMessagingServiceClient(messagingServiceId);
 
         QueueInfo[] queues = adminClient.getQueues(); //get a list of queues from EMS
-        List<EMSQueueConfigurationEvent> queueList = new ArrayList<>();
+        List<Map<String, Object>> emsQueues = new ArrayList<>();
 
         for (QueueInfo queue : queues) {
-            EMSQueueConfigurationEvent q = new EMSQueueConfigurationEvent();
-            q.setName(queue.getName());
-            q.setConfiguration(queue);
-            queueList.add(q);
+            Map<String, Object> qMap = objectMapper.convertValue(queue, new TypeReference<>() {});
+            emsQueues.add(qMap);
         }
 
-        return queueList;
+        return emsQueues;
     }
 }
