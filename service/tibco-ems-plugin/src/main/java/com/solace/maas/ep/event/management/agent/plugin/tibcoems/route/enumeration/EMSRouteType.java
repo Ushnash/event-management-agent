@@ -2,6 +2,7 @@ package com.solace.maas.ep.event.management.agent.plugin.tibcoems.route.enumerat
 
 public enum EMSRouteType {
     TIBCOEMS_QUEUE_LISTING("queueNameListing"),
+    TIBCOEMS_QUEUE_CONFIGURATION("queueConfigurationListing"),
     TIBCOEMS_TOPIC("topicListing");
 
     public final String label;
