@@ -31,7 +31,7 @@ public class EMSRouteDelegateImpl extends MessagingServiceRouteDelegateImpl {
         switch (EMSScanType.valueOf(scanType)) {
             case TIBCOEMS_ALL:
                 result.add(queueConfigurationRouteBundle(destinations,recipients,messagingServiceId));
-                result.add(subscriptionRouteBundle(destinations, recipients, messagingServiceId));
+                result.add(topicConfigurationRouteBundle(destinations, recipients, messagingServiceId));
                 break;
             case TIBCOEMS_QUEUE_LISTING:
                 result.add(queueRouteBundle(destinations, recipients, messagingServiceId));
@@ -39,8 +39,11 @@ public class EMSRouteDelegateImpl extends MessagingServiceRouteDelegateImpl {
             case TIBCOEMS_QUEUE_CONFIGURATION:
                 result.add(queueConfigurationRouteBundle(destinations, recipients, messagingServiceId));
                 break;
+            case TIBCOEMS_TOPIC_CONFIGURATION:
+                result.add(topicConfigurationRouteBundle(destinations, recipients, messagingServiceId));
+                break;
             case TIBCOEMS_TOPIC_LISTING:
-                result.add(subscriptionRouteBundle(destinations, recipients, messagingServiceId));
+                result.add(topicNameRouteBundle(destinations, recipients, messagingServiceId));
                 break;
         }
 
@@ -59,8 +62,14 @@ public class EMSRouteDelegateImpl extends MessagingServiceRouteDelegateImpl {
                 EMSRouteId.TIBCOEMS_QUEUE_CONFIGURATION.label, true);
     }
 
-    private RouteBundle subscriptionRouteBundle(List<RouteBundle> destinations, List<RouteBundle> recipients,
-                                                String messagingServiceId) {
+    private RouteBundle topicConfigurationRouteBundle(List<RouteBundle> destinations, List<RouteBundle> recipients,
+                                                      String messagingServiceId) {
+        return createRouteBundle(destinations, recipients, EMSRouteType.TIBCOEMS_TOPIC_CONFIGURATION.label, messagingServiceId,
+                EMSRouteId.TIBCOEMS_TOPIC_CONFIGURATION.label, true);
+    }
+
+    private RouteBundle topicNameRouteBundle(List<RouteBundle> destinations, List<RouteBundle> recipients,
+                                             String messagingServiceId) {
         return createRouteBundle(destinations, recipients, EMSRouteType.TIBCOEMS_TOPIC_LISTING.label, messagingServiceId,
                 EMSRouteId.TIBCOEMS_TOPIC_LISTING.label, false);
     }
