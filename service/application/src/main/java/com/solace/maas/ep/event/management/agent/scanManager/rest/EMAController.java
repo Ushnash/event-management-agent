@@ -37,6 +37,8 @@ public interface EMAController {
                     "KAFKA_TOPIC_LISTING\n" +
                     "KAFKA_TOPIC_OVERRIDE_CONFIGURATION\n" +
                     "CONFLUENT_SCHEMA_REGISTRY_SCHEMA\n" +
+                    "IBMMQ\n" +
+                    "TIBCOEMS\n" +
                     "```\n" +
                     "<b>List of destinations:</b>\n" +
                     "```\n" +

@@ -76,6 +76,12 @@ public class CommandLineScan {
             case "confluent_schema_registry":
                 scanRequestBO.setScanTypes(List.of("CONFLUENT_SCHEMA_REGISTRY_SCHEMA"));
                 break;
+            case "ibmmq":
+                scanRequestBO.setScanTypes(List.of("IBMMQ_ALL"));
+                break;
+            case "tibcoems":
+                scanRequestBO.setScanTypes(List.of("TIBCOEMS_ALL"));
+                break;
             default:
                 throw new RuntimeException("Unsupported messaging service type: " + messagingServiceEntity.getType());
         }

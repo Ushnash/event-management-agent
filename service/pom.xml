@@ -22,6 +22,7 @@
         <module>local-storage-plugin</module>
         <module>confluent-schema-registry-plugin</module>
         <module>ibmmq-plugin</module>
+        <module>tibco-ems-plugin</module>
         <module>application</module>
     </modules>
     <properties>

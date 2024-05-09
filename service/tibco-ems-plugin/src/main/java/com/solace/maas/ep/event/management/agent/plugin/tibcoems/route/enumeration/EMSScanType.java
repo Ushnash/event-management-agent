@@ -1,0 +1,8 @@
+package com.solace.maas.ep.event.management.agent.plugin.tibcoems.route.enumeration;
+
+public enum EMSScanType {
+
+    TIBCOEMS_ALL,
+    TIBCOEMS_QUEUE,
+    TIBCOEMS_TOPIC
+}
