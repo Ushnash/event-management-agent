@@ -374,3 +374,22 @@ eventPortal:
 #                      value: ${IBMMQ_ADMINISTRATOR_USERNAME}
 #                    - name: password
 #                      value: ${IBMMQ_ADMINISTRATOR_PASSWORD}
+      # Tibco EMS Example
+#    - id: tibcoEMSDefaultService
+#      type: TIBCOEMS
+#      name: EMS Test Service
+#      connections:
+#        - name: EMSBroker
+##          tcp[s]://[domain:[port]]]
+#          url: ${EMS_ADMIN_API_URL}
+#          authentication:
+#            - protocol: BASIC
+#              credentials:
+#                - source: ENVIRONMENT_VARIABLE
+#                  operations:
+#                    - name: TIBCOEMS_ALL
+#                  properties:
+#                    - name: username
+#                      value: ${EMS_ADMINISTRATOR_USERNAME}
+#                    - name: password
+#                      value: ${EMS_ADMINISTRATOR_PASSWORD}
