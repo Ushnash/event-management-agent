@@ -4,15 +4,16 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Attributes parsed from the response.
  */
 @Data
-public class EMSTopicEvent implements Serializable {
+public class EMSTopicConfigurationEvent implements Serializable {
 
     @Serial
-    private static final long serialVersionUID  = -5127409557140067324L;
-
+    private static final long serialVersionUID = 255842056103154192L;
     private String name;
+    private Map<String, Object> configuration;
 }
