@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Attributes parsed from the response.
  */
 @Data
-public class EMSQueueEvent implements Serializable {
+public class EMSQueueNameEvent implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 255842056103154192L;

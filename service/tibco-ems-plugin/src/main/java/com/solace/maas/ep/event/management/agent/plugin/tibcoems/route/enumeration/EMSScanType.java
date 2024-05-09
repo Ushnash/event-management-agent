@@ -3,6 +3,6 @@ package com.solace.maas.ep.event.management.agent.plugin.tibcoems.route.enumerat
 public enum EMSScanType {
 
     TIBCOEMS_ALL,
-    TIBCOEMS_QUEUE,
+    TIBCOEMS_QUEUE_LISTING,
     TIBCOEMS_TOPIC
 }

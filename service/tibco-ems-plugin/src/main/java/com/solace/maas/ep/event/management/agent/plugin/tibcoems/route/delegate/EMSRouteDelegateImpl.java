@@ -33,7 +33,7 @@ public class EMSRouteDelegateImpl extends MessagingServiceRouteDelegateImpl {
                 result.add(queueRouteBundle(destinations, recipients, messagingServiceId));
                 result.add(subscriptionRouteBundle(destinations, recipients, messagingServiceId));
                 break;
-            case TIBCOEMS_QUEUE:
+            case TIBCOEMS_QUEUE_LISTING:
                 result.add(queueRouteBundle(destinations, recipients, messagingServiceId));
                 break;
             case TIBCOEMS_TOPIC:
@@ -46,8 +46,8 @@ public class EMSRouteDelegateImpl extends MessagingServiceRouteDelegateImpl {
 
     private RouteBundle queueRouteBundle(List<RouteBundle> destinations, List<RouteBundle> recipients,
                                          String messagingServiceId) {
-        return createRouteBundle(destinations, recipients, EMSRouteType.TIBCOEMS_QUEUE.label, messagingServiceId,
-                EMSRouteId.TIBCOEMS_QUEUE.label, true);
+        return createRouteBundle(destinations, recipients, EMSRouteType.TIBCOEMS_QUEUE_LISTING.label, messagingServiceId,
+                EMSRouteId.TIBCOEMS_QUEUE_LISTING.label, true);
     }
 
     private RouteBundle subscriptionRouteBundle(List<RouteBundle> destinations, List<RouteBundle> recipients,
